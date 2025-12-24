@@ -1,1 +1,21 @@
 @import "tailwindcss";
+
+/* Reduce pinch/double-tap zoom on mobile: */
+html, body, #root {
+  height: 100%;
+  overflow: hidden; /* prevent page scrolling on all devices */
+  touch-action: manipulation;
+  -ms-touch-action: manipulation; /* IE/Edge */
+}
+
+/* Prevent iOS auto-zoom on form focus by ensuring readable font-size on small screens */
+@media (max-width: 480px) {
+  input, textarea, select, button {
+    font-size: 16px;
+  }
+}
+
+/* Fallback for older iOS to fill available height */
+html, body, #root {
+  min-height: -webkit-fill-available;
+}
