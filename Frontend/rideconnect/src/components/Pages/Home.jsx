@@ -1,9 +1,28 @@
-import React from 'react'
-
+import React from "react";
+import "./Home.css";
+import bg from "../../assets/HomePage.png";
+import logo from "../../assets/Rc.png";
+import logo1 from "../../assets/Logomain.png";
 const Home = () => {
   return (
-    <div>Home</div>
-  )
-}
+    <div>
+      <div className="main-logo"><img src={logo1} alt="main logo" /></div>
+      <div className="bg-img">
+        <img src={bg} alt="background" />
+      </div>
+      <div className="content">
+        <div className="logo-img">
+          <img src={logo} alt="logo" />
+        </div>
+        <div className="logo-txt">The Future of Ride Sharing</div>
+      </div>
 
-export default Home
+      <div className="get-started-btn">
+        <button className="btn">Get Started</button>
+        <button className="btn" >Login</button>
+      </div>
+    </div>
+  );
+};
+
+export default Home;
