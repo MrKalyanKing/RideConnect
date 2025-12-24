@@ -3,6 +3,7 @@ import "./Home.css";
 import bg from "../../assets/HomePage.png";
 import logo from "../../assets/Rc.png";
 import logo1 from "../../assets/Logomain.png";
+import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <div>
@@ -18,8 +19,8 @@ const Home = () => {
       </div>
 
       <div className="get-started-btn">
-        <button className="btn">Get Started</button>
-        <button className="btn" >Login</button>
+        <button className="btn"> <Link to="/customer/login" >Get Started</Link> </button>
+        <button className="btn" > <Link to="/captain/login">Captain Login</Link></button>
       </div>
     </div>
   );
