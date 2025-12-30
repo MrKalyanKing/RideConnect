@@ -13,14 +13,14 @@ const CustomerSignUp = () => {
           <img src={RideConnect} alt="" />
         </div>
         <form action="">
-        <div>
-          <input type="text" name="" id="" placeholder='Phone Number' />
-          <input type="text" name="" id="" placeholder='Password' />
-        </div>
-         <button className='signup-btn' >Start Riding</button>
-         <div className='signup-test'>
-          <span>Login into RideConnect? <span className='inner-span' ><Link to="/customer/login" >Login</Link></span></span>
-         </div>
+          <div>
+            <input type="text" name="" id="" placeholder='Phone Number' />
+            <input type="text" name="" id="" placeholder='Email' />
+          </div>
+          <button className='signup-btn' >Start Riding</button>
+          <div className='signup-test'>
+            <span>Login into RideConnect? <span className='inner-span' ><Link to="/customer/login" >Login</Link></span></span>
+          </div>
         </form>
       </div>
     </div>

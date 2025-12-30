@@ -32,11 +32,16 @@
 }
 
 /* Logo - responsive sizing */
-.signup-box .logo img {
+.signup-box .logo {
     width: 100%;
-    max-width: 340px;
+    height: 10vh;
+}
+
+.signup-box .logo img {
+
+    width: 80vw;
     height: auto;
-    aspect-ratio: 17/9;
+    /* aspect-ratio: 17/9; */
     object-fit: contain;
 }
 
@@ -54,7 +59,7 @@
     height: clamp(50px, 8vh, 60px);
     margin: clamp(8px, 1.5vh, 10px);
     padding: 10px;
-    border: none;
+    border: 2px solid pink;
     border-radius: 5px;
     outline-color: aqua;
     background-color: rgba(8, 190, 206, 0.1);
