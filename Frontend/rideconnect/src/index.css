@@ -3,9 +3,12 @@
 /* Reduce pinch/double-tap zoom on mobile: */
 html, body, #root {
   height: 100%;
-  overflow: hidden; /* prevent page scrolling on all devices */
+  overflow-x: hidden; /* prevent horizontal scrolling, allow vertical */
+  overflow-y: auto;
   touch-action: manipulation;
   -ms-touch-action: manipulation; /* IE/Edge */
+  margin: 0;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Prevent iOS auto-zoom on form focus by ensuring readable font-size on small screens */
