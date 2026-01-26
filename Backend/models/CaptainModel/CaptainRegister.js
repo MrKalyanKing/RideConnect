@@ -5,6 +5,9 @@ const captainRegisterSchema = new mongoose.Schema({
         type: Number,
         required: true,
         unique: true
+    },
+    Otp: {
+        type: String
     }
 })
 
