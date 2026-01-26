@@ -11,7 +11,7 @@ const userRegister = async (req, res) => {
 
     const user = await UserModel.findOne({ email })
 
-    if (user || email) {
+    if (user) {
         return res.status(400).json({ message: "user is AlreadyExists" })
     }
 
@@ -19,7 +19,7 @@ const userRegister = async (req, res) => {
         return res.status(400).json({ message: "phone and email are required" });
     }
 
-    if (phone && phone.length !== 10) {
+    if (phone && String(phone).length !== 10) {
         return res.status(400).json({ message: "Invalid phone number" });
     }
 
@@ -68,8 +68,21 @@ const userLogin = async (req, res) => {
             return res.status(400).json({ message: "user is NotExists" })
         }
 
+        if (user || email) {
+            function otpGenerator() {
+                return crypto.randomInt(0, 10000).toString().padStart(4, "0")
+            }
+        }
         // const isValidotp = await verifyOtp(otp, email);
 
+
+        if (!Otp) {
+            const newOtp = crypto.randomInt(0, 10000).toString().padStart(4, "0");
+            user.Otp = newOtp;
+            await user.save();
+            console.log(newOtp);
+            return res.status(200).json({ message: "OTP sent", otp: newOtp });
+        }
 
         if (user.Otp !== Otp) {
             return res.status(400).json({ message: "Invalid otp" })
@@ -83,7 +96,7 @@ const userLogin = async (req, res) => {
 
         req.session.userId = user._id
         req.session.isAuthenticated = true
-        // console.log(req.session.ID)
+        console.log(req.session.ID)
         return res.status(200).json({ message: "user logged in " })
 
     } catch (err) {
