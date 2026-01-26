@@ -1,5 +1,5 @@
-import { console } from "inspector"
-import CaptainRegModel from "../../models/CaptainModel/CaptainRegister"
+
+import CaptainRegModel from "../../models/CaptainModel/CaptainRegister.js"
 
 import crypto from "crypto"
 import { Session } from "express-session"
@@ -8,8 +8,17 @@ const CaptainRegister = async (req, res) => {
     try {
         const { phone } = req.body
 
+        const captain = await CaptainRegModel.findOne({ phone })
+
+        if (captain) {
+            return res.status(400).json({ message: "captain is ALready Exists", })
+        }
+
         if (!phone) {
             return res.status(400).json({ message: "Phone number filed is required" })
+        }
+        if (phone && String(phone).length !== 10) {
+            return res.status(400).json({ message: "Phone number filed is Invalid" })
         }
         const generateOtp = () => {
             return crypto.randomInt(0, 10000).toString().padStart(4, "0")
@@ -72,3 +81,5 @@ const CaptainLogin = async (req, res) => {
 
 
 }
+
+export { CaptainRegister, CaptainLogin }
