@@ -14,7 +14,7 @@ const UserSchema = mongoose.Schema({
     },
     Otp: {
         type: String,
-        required: true
+        required: false
     }
 })
 
