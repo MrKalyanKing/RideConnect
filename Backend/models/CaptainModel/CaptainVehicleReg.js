@@ -1,11 +1,7 @@
 import mongoose from "mongoose";
 
 const CaptainvehicleScehma = new mongoose.Schema({
-    phone: {
-        type: Number,
-        required: true,
-        unique: true
-    },
+
     vehicleNumber: {
         type: String,
         required: true,
