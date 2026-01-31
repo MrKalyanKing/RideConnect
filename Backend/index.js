@@ -38,8 +38,18 @@ app.use(express.json());
 
 app.use("/api/", router)
 
-app.listen(8080, () => {
-    mongoose.connect(url)
-        .then(() => { console.log("DB connected") })
-    console.log("Server is running on port 8080");
+
+
+
+mongoose.connect(url)
+    .then(() => { console.log("DB connected") })
+    .catch((err) => {
+        console.log(err)
+    })
+
+app.get('/', (req, res) => {
+    res.send("Hello")
 })
+
+export default app
+
