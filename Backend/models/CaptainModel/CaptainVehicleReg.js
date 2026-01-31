@@ -2,6 +2,12 @@ import mongoose from "mongoose";
 
 const CaptainvehicleScehma = new mongoose.Schema({
 
+    status: {
+        type: String,
+        enum: ["pending", "rejected", "approved"],
+        default: "pending"
+    },
+
     vehicleNumber: {
         type: String,
         required: true,

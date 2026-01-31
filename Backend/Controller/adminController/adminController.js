@@ -1,4 +1,5 @@
 import { AdminModel } from "../../models/admin/AdminModel.js"
+import CaptainVehicleModel from "../../models/CaptainModel/CaptainVehicleReg.js";
 
 import bcrypt from "bcrypt"
 import session from "express-session"
@@ -63,4 +64,13 @@ const adminLogin = async (req, res) => {
 
 }
 
-export { adminReg, adminLogin }
+const getPendingVehicles = async (req, res) => {
+    try {
+        const vehicles = await CaptainVehicleModel.find({ status: "pending" });
+        return res.status(200).json({ message: "Pending vehicles", vehicles });
+    } catch (err) {
+        return res.status(500).json({ message: "Error fetching vehicles", err });
+    }
+}
+
+export { adminReg, adminLogin, getPendingVehicles }
