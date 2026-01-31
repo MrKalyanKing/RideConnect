@@ -2,7 +2,7 @@ import { Router } from "express";
 import { userLogin, userRegister } from "../Controller/UserController/UserLoginSignup.js";
 import { CaptainLogin, CaptainRegister } from "../Controller/CaptainController/CaptainRegister.js";
 import { CaptainVehicleRegistration } from "../Controller/CaptainController/CaptainVehicle.js";
-import { adminLogin, adminReg } from "../Controller/adminController/adminController.js";
+import { adminLogin, adminReg, getPendingVehicles } from "../Controller/adminController/adminController.js";
 
 const router = Router();
 
@@ -22,5 +22,6 @@ router.post("/captain/vehicle/reg", CaptainVehicleRegistration)
 
 router.post("/admin/register", adminReg)
 router.post("/admin/login", adminLogin)
+router.get("/admin/vehicle/pending", getPendingVehicles)
 
 export default router;

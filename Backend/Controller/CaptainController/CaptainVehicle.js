@@ -1,4 +1,5 @@
 import CaptainVehicleModel from "../../models/CaptainModel/CaptainVehicleReg.js"
+import { getIO } from "../../socket.js";
 
 
 const CaptainVehicleRegistration = async (req, res) => {
@@ -28,6 +29,9 @@ const CaptainVehicleRegistration = async (req, res) => {
         })
 
         await newVehicle.save()
+
+        const io = getIO();
+        io.emit('new_vehicle_submitted', newVehicle);
 
         res.status(201).json({ message: "Vehicle registered successfully", newVehicle })
 
