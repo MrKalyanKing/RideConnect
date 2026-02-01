@@ -1,61 +1,70 @@
+import CaptainRegModel from "./models/CaptainModel/CaptainRegister.js";
 import CaptainVehicleModel from "./models/CaptainModel/CaptainVehicleReg.js";
 import { Server } from "socket.io";
+import mongoose from "mongoose";
 let io;
 
 
 const InitializeSocket = (server) => {
-    io = new Server(server, {
-        cors: {
-            origin: "*",
-            methods: ["GET", "POST"]
-        }
-    })
-    io.on('connection', (socket) => {
-        console.log(`Client connected ${socket.id}`)
+    io = new Server(server);
 
-        socket.on('join', (data) => {
-            console.log("data recived from client ", data)
+    io.on('connection', (socket) => {
+        console.log(`Socket is connected ${socket.id}`);
+
+        socket.join((data) => {
+            console.log(`Data is received ${data}`)
         })
 
-        socket.on('disconnect', () => {
-            console.log("Client disconnected", socket.id);
-        });
 
-        socket.on('admin_approve_vehicle', async (data) => {
+
+        socket.on("admin_approve_vehicle", async (data) => {
             try {
-                const { vehicleId } = data;
 
-                const vehicle = await CaptainVehicleModel.findOneAndUpdate(
+                console.log("RAW DATA:", data);
+
+                // Handle case where data is accidentally a string
+                let vehicleId;
+
+                if (typeof data === "string") {
+                    const parsed = JSON.parse(data);
+                    vehicleId = parsed.vehicleId;
+                } else {
+                    vehicleId = data.vehicleId;
+                }
+                // let vehicleId = data.vehicleId;
+
+                if (!vehicleId) {
+                    socket.emit("error_message", { message: "vehicleId missing" });
+                    return;
+                }
+
+                const newVehicle = await CaptainVehicleModel.findByIdAndUpdate(
                     vehicleId,
                     { status: "approved" },
                     { new: true }
                 );
 
-                if (!vehicle) {
-                    console.log("Vehicle not found in CaptainVehicleModel");
+                if (!newVehicle) {
+                    socket.emit("error_message", { message: "Vehicle does not exist" });
                     return;
                 }
 
-                io.emit('vehicle_status_updated', vehicle);
-                console.log("vehicle approved")
+                socket.emit("approve_success", {
+                    message: "Vehicle approved successfully",
+                    newVehicle
+                });
 
             } catch (err) {
-                console.error("Approve error:", err);
+                console.log(err);
+                socket.emit("error_message", {
+                    message: "Vehicle status is not updated",
+                    error: err.message
+                });
             }
         });
 
 
-        socket.on('admin_reject_vehicle', async (data) => {
-            const { vehicleId } = data
-            if (!vehicleId) return;
-
-            const vehicle = await CaptainVehicleModel.findByIdAndUpdate(vehicleId, {
-                status: "rejected"
-            }, { new: true });
-
-            io.emit('vehicle_status_updated', vehicle);
-        });
-    });
+    })
 }
 
 const getIO = () => {

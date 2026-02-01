@@ -30,6 +30,7 @@ const CaptainVehicleRegistration = async (req, res) => {
 
         await newVehicle.save()
 
+        // 
         const io = getIO();
         io.emit('new_vehicle_submitted', newVehicle);
 
