@@ -16,6 +16,7 @@ const InitializeSocket = (server) => {
         })
 
 
+        // admin approve the vehicle manually using sockets communication
 
         socket.on("admin_approve_vehicle", async (data) => {
             try {
@@ -62,6 +63,11 @@ const InitializeSocket = (server) => {
                 });
             }
         });
+
+
+        // if vehicle details were not matched admin can reject using socket api
+
+
 
 
     })
