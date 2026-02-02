@@ -1,4 +1,4 @@
-.cap-signup {
+.cap-vr-container {
     width: 100vw;
     min-height: 100vh;
     background-color: #1c1c1c;
@@ -14,16 +14,14 @@
     height: 100%;
     object-fit: cover;
     opacity: 0.3;
-    /* Dark overlay effect */
     z-index: 0;
 }
 
-.cap-signup-box {
+.cap-vr-box {
     position: relative;
     z-index: 1;
     width: 100%;
     max-width: 480px;
-    /* Mobile constraint */
     margin: 0 auto;
     padding: 2rem 1.5rem;
     min-height: 100vh;
@@ -33,46 +31,45 @@
     backdrop-filter: blur(5px);
 }
 
-.cap-signup-box h1 {
+.cap-vr-box h1 {
     text-align: center;
     color: #d4af37;
-    /* Gold */
     font-size: 28px;
     font-weight: 700;
-    margin-top: 180px;
+    margin-top: 30px;
+    /* Adjusted for mobile view */
+    margin-bottom: 30px;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     font-family: 'Inter', sans-serif;
 }
 
-.cap-signup-form {
+.cap-vr-form {
     width: 100%;
 }
 
-.cap-signup-form form {
+.cap-vr-form form {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-.input-group {
+.cap-vr-input-group {
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
 
-.input-group label {
+.cap-vr-input-group label {
     color: #ffd700;
     font-size: 14px;
     font-weight: 500;
     margin-left: 5px;
 }
 
-
-
-.cap-signup-form input[type="text"],
-.cap-signup-form input[type="date"],
-.vehicle-select {
-    padding: 10px;
+.cap-vr-form input[type="text"],
+.cap-vr-form input[type="date"],
+.cap-vr-select {
+    padding: 12px 15px;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid #d4af37;
     border-radius: 12px;
@@ -80,44 +77,46 @@
     font-size: 16px;
     outline: none;
     transition: all 0.3s ease;
-
+    width: 100%;
     box-sizing: border-box;
 }
 
-.vehicle-select {
-    width: 60vw;
+.cap-vr-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23d4af37%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px top 50%;
+    background-size: 12px auto;
+    width: 50vw;
 }
 
-.vehicle-select option {
-    background: #333;
+.cap-vr-select option {
+    background: #1c1c1c;
     color: #fff;
-
 }
 
-.cap-signup-form input:focus,
-.vehicle-select:focus {
+.cap-vr-form input:focus,
+.cap-vr-select:focus {
     box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
     background: rgba(255, 255, 255, 0.1);
-
 }
 
-
-
 /* File Upload Specifics */
-.file-upload-section {
+.cap-vr-file-section {
     display: flex;
     gap: 10px;
     margin-top: 10px;
 }
 
-.file-input-wrapper {
+.cap-vr-file-wrapper {
     flex: 1;
     position: relative;
     overflow: hidden;
     display: inline-block;
 }
 
-.file-input-wrapper input[type="file"] {
+.cap-vr-file-wrapper input[type="file"] {
     position: absolute;
     left: 0;
     top: 0;
@@ -127,7 +126,7 @@
     cursor: pointer;
 }
 
-.file-label {
+.cap-vr-file-label {
     display: block;
     padding: 12px;
     background: rgba(212, 175, 55, 0.1);
@@ -139,13 +138,16 @@
     font-weight: 600;
     cursor: pointer;
     transition: 0.2s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.file-label:hover {
+.cap-vr-file-label:hover {
     background: rgba(212, 175, 55, 0.2);
 }
 
-.reg-btn {
+.cap-vr-btn {
     margin-top: 20px;
     padding: 16px;
     background: linear-gradient(135deg, #d4af37, #f6e27a);
@@ -159,18 +161,18 @@
     transition: transform 0.2s;
 }
 
-.reg-btn:active {
+.cap-vr-btn:active {
     transform: scale(0.98);
 }
 
-.signup-test {
+.cap-vr-footer {
     text-align: center;
     margin-top: 20px;
     color: #aaa;
     font-size: 14px;
 }
 
-.navigate {
+.cap-vr-link {
     color: #d4af37;
     text-decoration: none;
     font-weight: 600;
