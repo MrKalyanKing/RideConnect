@@ -2,6 +2,7 @@ import CaptainRegModel from "./models/CaptainModel/CaptainRegister.js";
 import CaptainVehicleModel from "./models/CaptainModel/CaptainVehicleReg.js";
 import { Server } from "socket.io";
 import mongoose from "mongoose";
+import { parse } from "path";
 let io;
 
 
@@ -21,7 +22,6 @@ const InitializeSocket = (server) => {
         socket.on("admin_approve_vehicle", async (data) => {
             try {
 
-                console.log("RAW DATA:", data);
 
                 // Handle case where data is accidentally a string
                 let vehicleId;
@@ -67,8 +67,45 @@ const InitializeSocket = (server) => {
 
         // if vehicle details were not matched admin can reject using socket api
 
+        socket.on("admin_rejected_vehicle", async (data) => {
+            try {
+                console.log(data)
+
+                let vehicleId;
+                if (typeof data === "string") {
+                    const parsed = JSON.parse(data)
+                    vehicleId = parsed.vehicleId
+                } else {
+                    vehicleId = data.vehicleId
+                }
 
 
+
+                if (!vehicleId) {
+                    socket.emit("error_message", { message: "vehicleId missing" });
+                    return;
+                }
+
+                const newVehicle = await CaptainVehicleModel.findByIdAndUpdate(vehicleId,
+                    { status: "rejected" },
+                    { new: true }
+                )
+
+                if (!newVehicle) {
+                    socket.emit("error_message", { message: "vehicle status not updated" })
+                    return
+                }
+
+                socket.emit("rejected_success", {
+                    message: "Vehicle approved successfully",
+                    newVehicle
+                });
+
+            } catch (err) {
+                console.log(err)
+                socket.emit("error_message", { message: "vehicle status not updated", err: err.message })
+            }
+        })
 
     })
 }
