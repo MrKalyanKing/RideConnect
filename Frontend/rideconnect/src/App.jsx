@@ -7,6 +7,7 @@ import CustomerSignUp from './components/CustomerComp/CustomerLoginSignup/Custom
 import Home from './components/Pages/Home'
 import CaptainOtp from './components/CaptainComp/CaptainLoginSignup/CaptainOtp'
 import CustomerOtp from './components/CustomerComp/CustomerLoginSignup/CustomerOtp'
+import CapvehicleReg from './components/CaptainComp/CapVehicleReg/CapvehicleReg'
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
       <Route path="/customer/signup" element={<CustomerSignUp />} />
       <Route path='/captain/otp' element={<CaptainOtp />} />
       <Route path='/customer/otp' element={<CustomerOtp />} />
+      <Route path='/captain/vehicle/reg' element={<CapvehicleReg />} />
 
     </Routes>
   )
