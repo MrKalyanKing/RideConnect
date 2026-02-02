@@ -6,6 +6,7 @@ import CustomerLogin from './components/CustomerComp/CustomerLoginSignup/Custome
 import CustomerSignUp from './components/CustomerComp/CustomerLoginSignup/CustomerSignUp'
 import Home from './components/Pages/Home'
 import CaptainOtp from './components/CaptainComp/CaptainLoginSignup/CaptainOtp'
+import CustomerOtp from './components/CustomerComp/CustomerLoginSignup/CustomerOtp'
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
       <Route path="/customer/login" element={<CustomerLogin />} />
       <Route path="/customer/signup" element={<CustomerSignUp />} />
       <Route path='/captain/otp' element={<CaptainOtp />} />
+      <Route path='/customer/otp' element={<CustomerOtp />} />
 
     </Routes>
   )

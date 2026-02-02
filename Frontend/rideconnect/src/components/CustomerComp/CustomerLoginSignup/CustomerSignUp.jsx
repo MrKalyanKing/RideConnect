@@ -10,7 +10,7 @@ const CustomerSignUp = () => {
       <img src={signupInterface} alt="" />
       <div className='signup-box'>
         <div className='logo'>
-          <img src={RideConnect} alt="" />
+          <Link to='/' > <img src={RideConnect} alt="" /></Link>
         </div>
         <form action="">
           <div>

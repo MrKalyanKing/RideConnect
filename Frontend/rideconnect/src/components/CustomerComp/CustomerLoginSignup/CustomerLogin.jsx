@@ -9,7 +9,7 @@ const CustomerLogin = () => {
       <img src={LoginInterface} alt="" />
       <div className="login-box">
         <div className="rc-logo">
-          <img src={RideConnect} alt="" />
+          <Link to='/' > <img src={RideConnect} alt="" /></Link>
         </div>
         <div className="form-login">
           <form action="">
@@ -17,7 +17,7 @@ const CustomerLogin = () => {
             <span>(OR)</span><br />
             <input type="text" name="" id="" placeholder='Enter Email' />
 
-            <button className='signup-btn' >Ride to Login</button>
+            <Link to='/customer/otp' > <button className='signup-btn' >Ride to Login</button></Link>
             <div className='signup-test'>
               <span>New to RideConnect? <span className='inner-span'><Link to="/customer/signup" >Sign Up</Link></span></span>
             </div>
