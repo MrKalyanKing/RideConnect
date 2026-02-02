@@ -1,0 +1,85 @@
+.cap-otp {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #ff4f7b, #5a5cff);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Logo */
+.cap-otp img {
+    width: 70vw;
+    margin-top: 30px;
+    margin-bottom: 170px;
+    margin-right: 90px;
+}
+
+/* OTP Card stays centered */
+.otp-card {
+    background: white;
+    width: 90%;
+    max-width: 380px;
+    padding: 40px 25px;
+    border-radius: 14px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Headings */
+.otp-card h2 {
+    font-size: 34px;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 30px;
+    font-weight: 500;
+}
+
+/* OTP Inputs */
+.otp-box {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.otp {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    border: 2px solid #ddd;
+    text-align: center;
+    font-size: 26px;
+    font-weight: 600;
+    outline: none;
+    transition: 0.2s;
+}
+
+.otp:focus {
+    border-color: #5a5cff;
+    box-shadow: 0 0 0 2px rgba(90, 92, 255, 0.3);
+}
+
+/* Button */
+.verify-btn {
+    width: 100%;
+    height: 48px;
+    border: none;
+    border-radius: 10px;
+    background: #5a5cff;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.verify-btn:hover {
+    background: #4848e0;
+}

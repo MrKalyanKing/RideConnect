@@ -71,14 +71,18 @@ Wrote the **Vehicle Registration Controller**. Now captains can not only sign up
 Next step: Connecting this to the Frontend! 🔗
 #NodeJS #APIdev #Backend #RideSharing #Day6
 
-### **Day 7: Integrating Vehicle Forms (Frontend)**
-**Topic:** Connecting the dots.
+### **Day 7: Backend Core & Real-Time Admin 🛠️**
+**Topic:** Backend Wrap-up & Admin Sockets.
 **Post Content:**
-🖥️ **Day 7: Frontend Integration**
-Bridging the gap! Connected the **Captain Vehicle Registration** forms to the backend APIs.
-Now handling file inputs for document verification and ensuring real-time feedback for the user.
-The onboarding flow for Captains is nearing completion! ✅
-#React #Integration #FullStackDev #Day7
+� **Day 7: The Backend Backbone is Ready!**
+One week down! Today I wrapped up the core Backend module for RideConnect.
+It’s not just about APIs; it’s about a secure and scalable foundation.
+✅ **Authentication Trinity**: Secure flows for Users, Captains, and Admins using Sessions & MongoDB Store.
+✅ **Vehicle Management**: Handling complex file uploads (RC Books, Insurance) with **Multer**.
+✅ **Real-Time Admin Actions**: Integrated **Socket.io** so Admins can approve or reject Captain vehicles instantly! ⚡
+The server is now a robust engine ready to handle the ride logic.
+Next stop: Connecting this power to the Frontend! 🔗
+#BackendDevelopment #NodeJS #SocketIO #RealTime #RideConnect #Day7 #BuildInPublic
 
 ### **Day 8: Homepage & Mapping (Frontend)**
 **Topic:** The Visual Experience.
