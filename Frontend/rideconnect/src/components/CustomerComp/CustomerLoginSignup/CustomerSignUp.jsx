@@ -4,12 +4,21 @@ import './CustomerSignUp.css'
 import signupInterface from '../../../assets/CustomerInterfacebg.png'
 import RideConnect from '../../../assets/Rc.png'
 import { Link } from 'react-router-dom'
+import axios from "axios"
+import { useContext } from 'react'
+import { contextprovider } from '../../Context/ContextProvider'
+
+
+
 const CustomerSignUp = () => {
 
   const [data, setData] = useState({
     phone: "",
     email: ""
   })
+
+  const { url } = useContext(contextprovider)
+
 
   const handleOnChange = ((e) => {
     const { name, value } = e.target
@@ -18,6 +27,14 @@ const CustomerSignUp = () => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
+    try {
+      const res = axios.post(`${url}/customer/register`, data)
+      setData(res.data);
+      console.log(res);
+      return res.status(201).json({ message: "user registered" })
+    } catch (err) {
+      return res.status(400).json({ message: "user not creates", err })
+    }
   }
   useEffect(() => {
     console.log(data)
