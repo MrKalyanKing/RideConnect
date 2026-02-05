@@ -3,6 +3,12 @@ import logo from '../../../assets/Rc.png'
 import './CustomerOtp.css'
 import { Link } from 'react-router-dom'
 const CustomerOtp = () => {
+
+
+
+
+
+
     return (
         <div class="cap-otp">
             <Link to="/" > <img src={logo} alt="" /></Link>

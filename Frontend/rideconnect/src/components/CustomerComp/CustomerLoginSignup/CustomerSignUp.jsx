@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import './CustomerSignUp.css'
 import signupInterface from '../../../assets/CustomerInterfacebg.png'
 import RideConnect from '../../../assets/Rc.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from "axios"
 import { useContext } from 'react'
 import { contextprovider } from '../../Context/ContextProvider'
@@ -18,22 +18,39 @@ const CustomerSignUp = () => {
   })
 
   const { url } = useContext(contextprovider)
+  const navigate = useNavigate()
 
 
-  const handleOnChange = ((e) => {
-    const { name, value } = e.target
-    setData((prev) => ({ ...prev, [name]: value }))
-  })
+  const handleOnChange = (e) => {
+    const { name, value } = e.target;
+    setData((prev) => ({
+      ...prev,
+      [name]: value
+    }));
+  };
 
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = axios.post(`${url}/customer/register`, data)
+
+      const res = await axios.post(`${url}/register`, data)
       setData(res.data);
       console.log(res);
-      return res.status(201).json({ message: "user registered" })
+      if (res.status === 201) {
+        navigate('/customer/otp')
+        // navigate or clear form if needed
+      }
+
     } catch (err) {
-      return res.status(400).json({ message: "user not creates", err })
+
+      if (err.response) {
+        console.error("Error status:", err.response.status);
+        console.error("Error data:", err.response.data);
+        alert(`Error: ${err.response.data.message || "Registration failed"}`);
+      } else {
+        console.error("Error:", err.message);
+        alert("Network Error");
+      }
     }
   }
   useEffect(() => {
@@ -52,7 +69,7 @@ const CustomerSignUp = () => {
         </div>
         <form onSubmit={handleOnSubmit} action="">
           <div>
-            <input type="text"
+            <input type="number"
               name="phone"
               value={data.phone}
               onChange={handleOnChange}
