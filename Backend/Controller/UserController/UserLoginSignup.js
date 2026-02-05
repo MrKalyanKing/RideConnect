@@ -3,16 +3,23 @@ import crypto from "crypto"
 import UserModel from "../../models/UserModel/User.js";
 import cookieParser from "cookie-parser";
 import session from "express-session";
+import { measureMemory } from "vm";
 
 
 const userRegister = async (req, res) => {
     const { phone, email } = req.body;
 
+    if (!phone || !email) {
+        return res.status(401).json({ message: "fields are required" })
+    }
 
-    const user = await UserModel.findOne({ email })
 
-    if (user) {
-        return res.status(400).json({ message: "user is AlreadyExists" })
+    const existingUser = await UserModel.findOne({
+        $or: [{ email: email }, { phone: phone }]
+    });
+
+    if (existingUser) {
+        return res.status(400).json({ message: "User with this email or phone already exists" });
     }
 
     if (!phone && !email) {
@@ -39,10 +46,16 @@ const userRegister = async (req, res) => {
     })
     try {
         const saveduser = await User.save();
+        req.session.userId = saveduser._id
+        req.session.isAuthenticated = true
         console.log(Otp);
         return res.status(200).json({ message: "User created", saveduser: saveduser });
     } catch (err) {
-        return res.status(400).json({ message: err })
+        if (err.code === 11000) {
+            return res.status(400).json({ message: "User with this email or phone already exists" });
+        }
+        console.error("Register Error:", err);
+        return res.status(500).json({ message: "Internal Server Error", error: err.message });
     }
 }
 const verifyOtp = async (otp, email) => {

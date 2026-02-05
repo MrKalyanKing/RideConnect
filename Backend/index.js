@@ -5,6 +5,7 @@ import router from "./Router/routes.js";
 import cookieParser from "cookie-parser";
 import session from "express-session";
 import MongoStore from "connect-mongo"
+import cors from "cors"
 
 dotenv.config();
 const app = express();
@@ -33,6 +34,7 @@ app.use(session({
 //middlewares
 
 app.use(express.json());
+app.use(cors())
 
 //routing api
 
