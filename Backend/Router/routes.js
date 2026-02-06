@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { userLogin, userRegister } from "../Controller/UserController/UserLoginSignup.js";
+import { userLogin, userRegister, verifyOtpController } from "../Controller/UserController/UserLoginSignup.js";
 import { CaptainLogin, CaptainRegister } from "../Controller/CaptainController/CaptainRegister.js";
 import { CaptainVehicleRegistration } from "../Controller/CaptainController/CaptainVehicle.js";
 import { adminLogin, adminReg, getPendingVehicles } from "../Controller/adminController/adminController.js";
@@ -12,6 +12,7 @@ const router = Router();
 
 router.post("/register", userRegister);
 router.post("/login", userLogin)
+router.post("/verify-otp", verifyOtpController);
 
 //captain routes
 

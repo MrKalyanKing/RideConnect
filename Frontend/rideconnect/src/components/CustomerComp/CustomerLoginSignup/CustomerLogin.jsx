@@ -3,7 +3,12 @@ import LoginInterface from '../../../assets/CustomerInterfacebg.png'
 import RideConnect from '../../../assets/Rc.png'
 import './CustomerLogin.css'
 import { Link } from 'react-router-dom'
+import cookie from "js-cookie"
 const CustomerLogin = () => {
+
+
+  const token = cookie.get("token")
+  console.log(token)
   return (
     <div className='cus-login'>
       <img src={LoginInterface} alt="" />

@@ -36,7 +36,7 @@ const CustomerSignUp = () => {
       const res = await axios.post(`${url}/register`, data)
       setData(res.data);
       console.log(res);
-      if (res.status === 201) {
+      if (res.status === 200) {
         navigate('/customer/otp')
         // navigate or clear form if needed
       }
