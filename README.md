@@ -63,7 +63,7 @@ All routes are prefixed with `/api/` and are defined in `Router/routes.js`.
 | **POST** | `/api/captain/vehicle/reg` | Captain vehicle registration (w/ Image Upload) | `CaptainVehicleRegistration` |
 | **POST** | `/api/admin/register` | Admin registration | `adminReg` |
 | **POST** | `/api/admin/login` | Admin login | `adminLogin` |
-| **GET** | `/api/admin/vehicle/pending` | Get all pending vehicles | `getPendingVehicles` |
+| **GET** | `/api/admin/vehicle/pending` | Get all pending vehicles | `getPendingVehicles` }
 
 ---
 
