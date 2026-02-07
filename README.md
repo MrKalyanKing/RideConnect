@@ -151,4 +151,4 @@ The backend uses `socket.io` to facilitate real-time updates between the Captain
 | `error_message` | **Emit** | Sent on any socket processing error. | `{ message: "...", error?: "..." }` |
 
 
-added the otp
+
