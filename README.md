@@ -63,7 +63,7 @@ All routes are prefixed with `/api/` and are defined in `Router/routes.js`.
 | **POST** | `/api/captain/vehicle/reg` | Captain vehicle registration (w/ Image Upload) | `CaptainVehicleRegistration` |
 | **POST** | `/api/admin/register` | Admin registration | `adminReg` |
 | **POST** | `/api/admin/login` | Admin login | `adminLogin` |
-| **GET** | `/api/admin/vehicle/pending` | Get all pending vehicles | `getPendingVehicles` }
+| **GET** | `/api/admin/vehicle/pending` | Get all pending vehicles | `getPendingVehicles` |
 
 ---
 
@@ -149,3 +149,6 @@ The backend uses `socket.io` to facilitate real-time updates between the Captain
 | `admin_rejected_vehicle` | **On** | Listener for Admin rejecting a vehicle. | `{ vehicleId: "..." }` |
 | `rejected_success` | **Emit** | Sent back to Admin upon rejection. | `{ message: "...", newVehicle: {...} }` |
 | `error_message` | **Emit** | Sent on any socket processing error. | `{ message: "...", error?: "..." }` |
+
+
+added the otp verification controller
