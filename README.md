@@ -152,5 +152,3 @@ The backend uses `socket.io` to facilitate real-time updates between the Captain
 
 
 added the otp verification controller
-
-in the model and 
