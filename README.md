@@ -18,6 +18,7 @@ This document provides a comprehensive overview of the backend module for the Ri
     -   [Captain Vehicle Model](#captain-vehicle-model-modelscaptainmodelcaptainvehicleregjs)
     -   [Admin Model](#admin-model-modelsadminadminmodeljs)
 5.  [Real-Time Communication (Socket.io)](#5-real-time-communication-socketio)
+6.  [Frontend Overview](#6-frontend-overview)
 
 ---
 
@@ -37,6 +38,7 @@ The backend is built using **Node.js** with the **Express** framework. It uses *
 -   **validator**: String validation and sanitization.
 -   **socket.io**: Enables real-time, bidirectional communication.
 -   **@imagekit/nodejs**: Used for image uploads.
+-   **jsonwebtoken**: Used for securely signing and verifying tokens for User authentication.
 
 ### Server Initialization (`index.js` & `server.js`)
 The main entry point is `server.js` which initializes the HTTP server and Socket.io.
@@ -56,8 +58,9 @@ All routes are prefixed with `/api/` and are defined in `Router/routes.js`.
 
 | Method | Endpoint | Description | Controller Function |
 | :--- | :--- | :--- | :--- |
-| **POST** | `/api/register` | User registration | `userRegister` |
-| **POST** | `/api/login` | User login (OTP based) | `userLogin` |
+| **POST** | `/api/register` | User registration (Initiates OTP) | `userRegister` |
+| **POST** | `/api/login` | User login (Initiates OTP) | `userLogin` |
+| **POST** | `/api/verify-otp` | Verify OTP & Login (Returns JWT) | `verifyOtpController` |
 | **POST** | `/api/captain/register` | Captain registration | `CaptainRegister` |
 | **POST** | `/api/captain/login` | Captain login (OTP based) | `CaptainLogin` |
 | **POST** | `/api/captain/vehicle/reg` | Captain vehicle registration (w/ Image Upload) | `CaptainVehicleRegistration` |
@@ -76,10 +79,15 @@ Controllers handle the logic for each route.
     -   Validates phone and email.
     -   Checks if the user already exists.
     -   Generates a 4-digit OTP and creates a new User document.
+    -   *Note: In production, this would send an SMS/Email.*
 -   **`userLogin`**:
     -   Checks if the user exists.
-    -   **OTP Logic**: Generates/Verifies OTP.
-    -   On success: Creates a session (`req.session.userId`).
+    -   Generates a new OTP and updates the user document.
+-   **`verifyOtpController`**:
+    -   **New Feature**: Verifies the OTP sent to the user.
+    -   If valid, clears the OTP from the database.
+    -   Generates a **JWT Token** and sets it as an `httpOnly` cookie named `token`.
+    -   Returns the decoded token payload and user info.
 
 ### Captain Controller
 **Authentication (`Controller/CaptainController/CaptainRegister.js`)**
@@ -149,3 +157,15 @@ The backend uses `socket.io` to facilitate real-time updates between the Captain
 | `admin_rejected_vehicle` | **On** | Listener for Admin rejecting a vehicle. | `{ vehicleId: "..." }` |
 | `rejected_success` | **Emit** | Sent back to Admin upon rejection. | `{ message: "...", newVehicle: {...} }` |
 | `error_message` | **Emit** | Sent on any socket processing error. | `{ message: "...", error?: "..." }` |
+
+---
+
+## 6. Frontend Overview
+
+The frontend is a React application located in `Frontend/rideconnect`. It works in tandem with the backend to provide a seamless user experience.
+
+### Key Components
+-   **User Authentication**: Components for Login and Signup (`CustomerLoginSignup`) handling OTP input and verification.
+-   **Captain Portal**: Separate registration and vehicle management flows (`CaptainComp`) including image upload handling.
+-   **Context API**: Global state management (likely for Auth and User data) located in `Context`.
+-   **Real-time Interactions**: Uses `socket.io-client` to listen for vehicle approval/rejection events from the Admin dashboard.
