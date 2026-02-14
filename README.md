@@ -168,4 +168,4 @@ The frontend is a React application located in `Frontend/rideconnect`. It works 
 -   **User Authentication**: Components for Login and Signup (`CustomerLoginSignup`) handling OTP input and verification.
 -   **Captain Portal**: Separate registration and vehicle management flows (`CaptainComp`) including image upload handling.
 -   **Context API**: Global state management (likely for Auth and User data) located in `Context`.
--   **Real-time Interactions**: Uses `socket.io-client` to listen for vehicle approval/rejection events from the Admin dashboard.
+-   **Real-time Interactions**: Uses `socket.io-client` to listen for vehicle approval/rejection events from the Admin dashboard
