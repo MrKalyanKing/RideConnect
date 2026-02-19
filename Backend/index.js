@@ -10,8 +10,7 @@ import cors from "cors"
 dotenv.config();
 const app = express();
 
-const url = process.env.MONGO_URL;
-
+const url = process.env.MONGO_URL
 //session config
 
 app.use(session({
