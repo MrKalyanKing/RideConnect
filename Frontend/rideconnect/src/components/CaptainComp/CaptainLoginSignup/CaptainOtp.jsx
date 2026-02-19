@@ -1,6 +1,7 @@
 import React from 'react'
 import './CaptainOtp.css'
 import logo from '../../../assets/Rc.png'
+import { Link } from 'react-router-dom'
 const CaptainOtp = () => {
     return (
 
@@ -18,7 +19,7 @@ const CaptainOtp = () => {
                         <input className="otp" type="text" maxLength="1" />
                     </div>
 
-                    <button className="verify-btn">Verify</button>
+                  <Link to="/captain/vehicle/reg" >  <button className="verify-btn">Verify</button></Link>
                 </form>
             </div>
         </div>

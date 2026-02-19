@@ -57,9 +57,9 @@ const CustomerOtp = () => {
             const res = await axios.post(`${url}/verify-otp`, { Otp: enteredOtp });
 
             setOtp(res);
-            console.log(Otp);
+            // console.log(Otp);
             if (res.status == 201) {
-                navigate("/home");
+                navigate("/home"); 
             }
             alert("user logged in")
         } catch (err) {
@@ -74,8 +74,8 @@ const CustomerOtp = () => {
         }
 
     }
-    const token = cookie.get("token")
-    console.log(token)
+   
+   
     useEffect(() => {
         console.log(Otp)
     })
@@ -105,7 +105,7 @@ const CustomerOtp = () => {
                     </div>
 
 
-                    <button className="verify-btn">Verify</button>
+                  <button className="verify-btn">Verify</button>
                 </form>
             </div>
         </div>
