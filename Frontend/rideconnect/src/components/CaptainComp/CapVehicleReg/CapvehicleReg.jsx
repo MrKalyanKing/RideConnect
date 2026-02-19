@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './CapVehicleReg.css'
 import cap_bg from '../../../assets/CaptainLogin.png'
 import { Link, useNavigate } from 'react-router-dom'
-// import axios from 'axios'
+ //import axios from 'axios'
 
 const CapvehicleReg = () => {
     const handleChange = () => {
@@ -14,7 +14,32 @@ const CapvehicleReg = () => {
     const handleFileChange = () => {
 
     }
+    const [data,setData]=useState({
+       vehicleNumber:"",
+       vehicletype:"",
+       insuranceNumber:"",
+       insuranceExpiryDate:"",
+       rcBook:"",
+       
+    })
+    const handleOnChange=(event)=>{
+        const {name,value}=event.target
+        setData((prev)=>({
+        ...prev,[name]:value
+        }))
+    }
+    const handleOnSubmit=(e)=>{
+        e.preventDefault();
 
+
+        setData({vehicleNumber:"",insuranceNumber:"", vehicletype:"", insuranceExpiryDate:"",rcBook:""})
+    }
+    useEffect(()=>{
+        console.log(data)
+    })
+
+
+    
 
     return (
         <div className='cap-vr-container'>
@@ -24,15 +49,15 @@ const CapvehicleReg = () => {
                 <h1>Captain Vehicle Registration</h1>
 
                 <div className='cap-vr-form'>
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleOnSubmit}>
                         <div className="cap-vr-input-group">
                             <label>Vehicle Number</label>
-                            <input type="text" name="vehicleNumber" placeholder='e.g. TS 17 AB 1234' onChange={handleChange} required />
+                            <input type="text" name="vehicleNumber" value={data.vehicleNumber}  placeholder='e.g. TS 17 AB 1234' onChange={handleOnChange} required />
                         </div>
 
                         <div className="cap-vr-input-group">
                             <label>Vehicle Type</label>
-                            <select name="vehicleType" onChange={handleChange} required className="cap-vr-select">
+                            <select name="vehicletype"  value={data.vehicletype} onChange={handleOnChange} required className="cap-vr-select">
                                 <option value="" disabled selected>Select Vehicle Type</option>
                                 <option value="Car">Car 🚗</option>
                                 <option value="Auto">Auto 🛺</option>
@@ -42,17 +67,17 @@ const CapvehicleReg = () => {
 
                         <div className="cap-vr-input-group">
                             <label>Insurance Number</label>
-                            <input type="text" name="insuranceNumber" placeholder='Enter Insurance Policy No.' onChange={handleChange} required />
+                            <input type="text" name="insuranceNumber" value={data.insuranceNumber} placeholder='Enter Insurance Policy No.' onChange={handleOnChange} required />
                         </div>
 
                         <div className="cap-vr-input-group">
                             <label>Expiry Date</label>
-                            <input type="date" name="insuranceExpiryDate" onChange={handleChange} required />
+                            <input type="date" value={data.insuranceExpiryDate} name="insuranceExpiryDate" onChange={handleOnChange} required />
                         </div>
 
                         <div className="cap-vr-input-group">
                             <label>RC Book Number</label>
-                            <input type="text" name="rcBook" placeholder='Enter RC Book No.' onChange={handleChange} required />
+                            <input type="text" name="rcBook" value={data.rcBook} placeholder='Enter RC Book No.' onChange={handleOnChange} required />
                         </div>
 
                         <div className="cap-vr-file-section">
